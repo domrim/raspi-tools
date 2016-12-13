@@ -1,0 +1,10 @@
+[Unit]
+Description=StartUp IP Mailer
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/ipmailer/main.py
+
+[Install]
+WantedBy=multi-user.target
