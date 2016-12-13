@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 __author__ = "Dominik Rimpf"
 __credits__ = "Cody Giles"
 __license__ = "Creative Commons Attribution-ShareAlike 3.0 Unported License"
-__version__ = "1.0.1"
+__version__ = "1.1"
 __maintainer__ = "Dominik Rimpf"
 __email__ = "dev@d-rimpf.de"
 __status__ = "Production"
@@ -43,7 +43,7 @@ today = datetime.date.today()  # Get current time/date
 
 arg='ip route list'  # Linux command to retrieve ip addresses.
 # Runs 'arg' in a 'hidden terminal'.
-p=subprocess.Popen(arg,shell=True,stdout=subprocess.PIPE)
+p=subprocess.Popen(arg,shell=True,stdout=subprocess.PIPE,universal_newlines=True)
 data = p.communicate()  # Get data from 'p terminal'.
 
 # Split IP text block into three, and divide the two containing IPs into words.
