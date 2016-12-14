@@ -1,0 +1,14 @@
+[Unit]
+Description=Spotify Connect
+After=network-online.target
+
+[Service]
+Type=idle
+ExecStart=/opt/spotify-connect/spotify-connect-web.sh -u ds-rimpf -p KGE7yY8QWWg-y9CTm1MO45s -b 320 -n RaspberryPi
+Restart=always
+RestartSec=10
+StartLimitInterval=30
+StartLimitBurst=20
+
+[Install]
+WantedBy=multi-user.target
