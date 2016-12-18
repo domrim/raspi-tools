@@ -12,6 +12,7 @@ import subprocess
 import smtplib
 from email.mime.text import MIMEText
 import datetime
+import re
 import socket
 
 def connect_type(word_list):
@@ -42,30 +43,41 @@ smtpserver.login(mail_user, mail_password)  # Log in to server
 today = datetime.date.today()  # Get current time/date
 
 arg='ip route list'  # Linux command to retrieve ip addresses.
-# Runs 'arg' in a 'hidden terminal'.
+# Runs 'arg4' in a 'hidden terminal'.
 p=subprocess.Popen(arg,shell=True,stdout=subprocess.PIPE,universal_newlines=True)
 data = p.communicate()  # Get data from 'p terminal'.
 
-# Split IP text block into three, and divide the two containing IPs into words.
+# Split IP text block in list
 ip_lines = data[0].splitlines()
-split_line = ip_lines[1].split()
+# Filters for lines with IP
+split_line = [i.split() for i in ip_lines if not i.startswith('default')]
+
+# for i in range(len(split_line)):
+	# print(split_line[i].split())
 
 # con_type variables for the message text. ex) 'ethernet', 'wifi', etc.
-ip_type = connect_type(split_line)
-
+ip_type = []
+for line in split_line:
+	ip_type.append(connect_type(line))
+	
 """Because the text 'src' is always followed by an ip address,
 we can use the 'index' function to find 'src' and add one to
 get the index position of our ip.
 """
-ipaddr = split_line[split_line.index('src')+1]
+ip_addr = []
+for line in split_line:
+	ip_addr.append(line[line.index('src')+1])
 
 # Creates a sentence for each ip address.
-my_ip = 'Your %s ip is %s' % (ip_type, ipaddr)
-hostname = socket.gethostname()
+my_ip = []
+for i in range(len(ip_addr)):
+	my_ip.append('Your %s ip is %s' % (ip_type[i], ip_addr[i]))
+
+hostname = socket.gethostname() # gets hostname
 
 # Creates the text, subject, 'from', and 'to' of the message.
-msg = MIMEText(my_ip)
-msg['Subject'] = 'IP for %s on %s' % (hostname, today.strftime('%d %b %Y'))
+msg = MIMEText("\n".join(my_ip), 'plain', "utf-8")
+msg['Subject'] = 'IPs for %s on %s' % (hostname, today.strftime('%d %b %Y'))
 msg['From'] = sender
 msg['To'] = to
 # Sends the message
