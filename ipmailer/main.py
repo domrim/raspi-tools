@@ -12,7 +12,6 @@ import subprocess
 import smtplib
 from email.mime.text import MIMEText
 import datetime
-import re
 import socket
 
 def connect_type(word_list):
