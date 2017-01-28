@@ -33,7 +33,7 @@ to = 'raspi@d-rimpf.de' # Email to send to.
 sender = 'raspi2@d-rimpf.de' # Email to send from.
 mail_user = 'raspi@d-rimpf.de' # Email to send from.
 mail_password = 'z4zp6Q6_EzwjjoH_NHzU' # mail password.
-smtpserver = smtplib.SMTP('sslout.df.eu', 25) # Server to use.
+smtpserver = smtplib.SMTP('sslout.df.eu', 587) # Server to use.
 
 smtpserver.ehlo()  # Says 'hello' to the server
 smtpserver.starttls()  # Start TLS encryption
