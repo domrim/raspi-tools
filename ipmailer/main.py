@@ -29,11 +29,11 @@ def connect_type(word_list):
 
 # Change to your own account information
 # Account Information
-to = 'raspi@d-rimpf.de' # Email to send to.
-sender = 'raspi2@d-rimpf.de' # Email to send from.
-mail_user = 'raspi@d-rimpf.de' # Email to send from.
-mail_password = 'z4zp6Q6_EzwjjoH_NHzU' # mail password.
-smtpserver = smtplib.SMTP('sslout.df.eu', 587) # Server to use.
+to = 'reciever@example.com' # Email to send to.
+sender = 'sender@example.com' # Email to send from; Must be a mail address you own.
+mail_user = 'loginmail@example.com' # Email login to send from; Login name for mail server.
+mail_password = 'placeholder_password' # mail password.
+smtpserver = smtplib.SMTP('mailserver@example.com', 587) # Server and sending port (must support starttls) to use.
 
 smtpserver.ehlo()  # Says 'hello' to the server
 smtpserver.starttls()  # Start TLS encryption
