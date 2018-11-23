@@ -33,7 +33,7 @@ to = 'reciever@example.com' # Email to send to.
 sender = 'sender@example.com' # Email to send from; Must be a mail address you own.
 mail_user = 'loginmail@example.com' # Email login to send from; Login name for mail server.
 mail_password = 'placeholder_password' # mail password.
-smtpserver = smtplib.SMTP('mailserver@example.com', 587) # Server and sending port (must support starttls) to use.
+smtpserver = smtplib.SMTP('mailserver.example.com', 587) # Server and sending port (must support starttls) to use.
 
 smtpserver.ehlo()  # Says 'hello' to the server
 smtpserver.starttls()  # Start TLS encryption

@@ -1,4 +1,1 @@
-smtplib
-MIMEText
 datetime
-socket
